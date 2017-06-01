@@ -105,9 +105,9 @@
     CGRect rect;
     CGFloat imageScale = image.size.width / image.size.height;
     if (image.size.width > image.size.height) {     //图片比较宽
-        rect = CGRectMake(_size.width * index, (_size.height - _size.width / imageScale) / 2.0, _size.width, _size.width / imageScale);
+        rect = CGRectMake(0, (_size.height - _size.width / imageScale) / 2.0, _size.width, _size.width / imageScale);
     }else{      //图片比较长
-        rect = CGRectMake((_size.width - _size.width * imageScale) / 2.0 + _size.width * index,
+        rect = CGRectMake((_size.width - _size.width * imageScale) / 2.0,
                           0, _size.width * imageScale, _size.height);
     }
     return rect;
