@@ -64,7 +64,7 @@
 }
 #pragma mark----scrollViewDelegate
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    if (scrollView == _scroll) {
+    if (scrollView == _scroll) {        //放大时pageControl改变问题
         if(((int)scrollView.contentOffset.x%(int)_size.width) > (_size.width/2)){
             _pageControl.currentPage = (int)scrollView.contentOffset.x / (int)_size.width + 1;
         }else{
@@ -81,6 +81,10 @@
     UIView *view = scrollView.subviews.firstObject;
     if (scrollView.zoomScale <= 1.0) {
         view.center = self.view.center;
+    }else if(view.frame.size.width < _size.width){  //图片位置偏移
+        CGRect rect = view.frame;
+        rect.origin.x -= scrollView.contentOffset.x/2.0;
+        view.frame = rect;
     }
 }
 
